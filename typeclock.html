@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>type clock</title>
+  </head>
+  <body>
+    <style>
+    h1 {
+      font-family: monospace;
+      text-align: center;
+      width: 600px;
+      margin: auto;
+      font-size: 500%;
+      margin-top: 30vh;
+      
+    }
+    
+    </style>
+    <h1 id="clock">placeholder</h1>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+    <script>
+    
+    
+    function startApp(){
+        
+        $("#clock").text("");
+        var rawDate = new Date().toString();
+        var splitDate = [];
+        splitDate = rawDate.split("");
+        
+        var letter = 0;
+        var dateloop = setInterval(function(){
+          $("#clock").append(splitDate[letter++]);
+          if (letter > splitDate.length){
+            console.log("FETCHING NEW DATE");
+            clearInterval(dateloop);
+            startApp();
+          }
+        }, 100);
+    }
+    
+    startApp();
+
+    </script>
+  </body>
+</html>
