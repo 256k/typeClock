@@ -6,6 +6,7 @@
   </head>
   <body>
     <style>
+    /* Some styles to control the look of the clock type. nothing fancy*/
     h1 {
       font-family: monospace;
       text-align: center;
@@ -17,25 +18,31 @@
     }
     
     </style>
-    <h1 id="clock">placeholder</h1>
+    <!-- this is the DOM element carrying the clock text -->
+    <h1 id="clock">Clock Placeholder Text</h1>
+    <!-- I decided to use jQuery just to ease my mind. much more used to DOM control with jQuery than with vanilla JS -->
     <script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
   crossorigin="anonymous"></script>
     <script>
     
-    
+    // This is where the fun starts:
+    // Basically the entire JS functionality resides in a function that gets called at the end of the script.
+    //
     function startApp(){
-        
+        // the function begins by fetching the date and converting it into a string and then splitting each of its characters it into an array.
         $("#clock").text("");
         var rawDate = new Date().toString();
         var splitDate = [];
         splitDate = rawDate.split("");
         
+        // I needed to slow down the appending of the characters so i decided to use a setInterval function and i created the letter variable to reference the index of the array.
         var letter = 0;
         var dateloop = setInterval(function(){
           $("#clock").append(splitDate[letter++]);
           if (letter > splitDate.length){
+            // once the text has been completely typed, the function clears the setInterval and then calls itself back up to restart.
             console.log("FETCHING NEW DATE");
             clearInterval(dateloop);
             startApp();
