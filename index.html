@@ -45,7 +45,9 @@
             // once the text has been completely typed, the function clears the setInterval and then calls itself back up to restart.
             console.log("FETCHING NEW DATE");
             clearInterval(dateloop);
-            startApp();
+            var stoptime = setTimeout(function(){
+              startApp();
+            }, 2000);
           }
         }, 100);
     }
